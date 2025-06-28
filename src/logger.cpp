@@ -1,26 +1,30 @@
 #include "logger.h"
 
+void Logger::print(string name, string text) {
+    userPrint("[" + name + "] " + text + "\n");
+}
+
 void Logger::setPrintFunc(function<void(string)> print) {
-    this->print = print;
+    this->userPrint = print;
 }
 
 void Logger::setOutputFile(string filepath) {
     ofstream* log = static_cast<ofstream*>(calloc(sizeof(ofstream), 1)); // ! рискованно, занимает файл но не освобождает его .close()
-    print = [log] (string text) {
+    this->userPrint = [log] (string text) {
         (*log) << text;
     };
 }
 
 void Logger::info(string text) {
-    print("> " + text + "\n");
+    print("INFO", text);
 }
 
 void Logger::system(string text) {
-    print("[SYSTEM] " + text + "\n");
+    print("SYSTEM", text);
 }
 
 void Logger::debug(string text) {
-    print("*DEBUG* " + text + "\n");
+    print("DEBUG", text);
 }
 
 void Logger::system(SystemMessages message) {

@@ -19,7 +19,8 @@ public:
         STOP,
     };
 private:
-    function<void(string)> print = &coutPrint;
+    string timeFormat;
+    function<void(string)> userPrint = &coutPrint;
     static void coutPrint(string text) {
         cout << text;
     }
@@ -32,11 +33,13 @@ private:
     };
 
     const map<SystemMessages, string> SYSTEM_MESSAGES {
-        {SystemMessages::START, "----------STARTED----------\n\n"},
-        {SystemMessages::STOP, "----------STOPPED----------\n\n"},
+        {SystemMessages::START, "----------STARTED----------"},
+        {SystemMessages::STOP, "----------STOPPED----------"},
     };
 public:
+    void print(string name, string text);
     void setPrintFunc(function<void(string)>);
+    void setTimeFormat(string format);
     void setOutputFile(string filepath);
     void info(string text);
     template <typename T>
