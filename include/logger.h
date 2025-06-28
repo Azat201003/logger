@@ -20,7 +20,7 @@ public:
     };
 private:
     string timeFormat;
-    function<void(string)> userPrint = &coutPrint;
+    function<void(string)> customPrint = &coutPrint;
     static void coutPrint(string text) {
         cout << text;
     }

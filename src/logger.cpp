@@ -1,16 +1,16 @@
 #include "logger.h"
 
 void Logger::print(string name, string text) {
-    userPrint("[" + name + "] " + text + "\n");
+    customPrint("[" + name + "] " + text + "\n");
 }
 
 void Logger::setPrintFunc(function<void(string)> print) {
-    this->userPrint = print;
+    this->customPrint = print;
 }
 
 void Logger::setOutputFile(string filepath) {
     ofstream* log = static_cast<ofstream*>(calloc(sizeof(ofstream), 1)); // ! рискованно, занимает файл но не освобождает его .close()
-    this->userPrint = [log] (string text) {
+    this->customPrint = [log] (string text) {
         (*log) << text;
     };
 }
