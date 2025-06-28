@@ -9,7 +9,7 @@
 using namespace std;
 
 class Logger {
-private:
+public:
     enum ClassMessages {
         CREATED,
     };
@@ -18,6 +18,11 @@ private:
         START,
         STOP,
     };
+private:
+    function<void(string)> print = &coutPrint;
+    static void coutPrint(string text) {
+        cout << text;
+    }
 
     template <typename x>
     string className() { return typeid(x).name(); }
@@ -30,10 +35,6 @@ private:
         {SystemMessages::START, "----------STARTED----------\n\n"},
         {SystemMessages::STOP, "----------STOPPED----------\n\n"},
     };
-    function<void(string)> print = &coutPrint;
-    static void coutPrint(string text) {
-        cout << text;
-    }
 public:
     void setPrintFunc(function<void(string)>);
     void setOutputFile(string filepath);
