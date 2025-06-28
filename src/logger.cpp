@@ -1,4 +1,4 @@
-#include "main/logger.h"
+#include "logger.h"
 
 void Logger::info(string text)
 {
