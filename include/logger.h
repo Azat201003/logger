@@ -3,6 +3,8 @@
 #include <iostream>
 #include <string>
 #include <map>
+#include <functional>
+#include <fstream>
 
 using namespace std;
 
@@ -28,18 +30,24 @@ static map<SystemMessages, string> SYSTEM_MESSAGES {
 };
 
 class Logger {
+private:
+    function<void(string)> print = &coutPrint;
+    static void coutPrint(string text) {
+        cout << text;
+    }
 public:
-    // static Logger* getInstance();
+    void setPrintFunc(function<void(string)>);
+    void setOutputFile(string filepath);
     void info(string text);
     template <typename T>
-    static void named(string text) {
-        cout << "[" << className<T>() << "] " << text << endl;
+    void named(string text) {
+        print("[" + className<T>() + "] " + text + "\n");
     }
     template <typename T>
-    static void named(ClassMessages message) {
+    void named(ClassMessages message) {
         named<T>(CLASS_MESSAGES.at(message));
     }
-    static void system(SystemMessages message);
-    static void system(string text);
-    static void debug(string text);
+    void system(SystemMessages message);
+    void system(string text);
+    void debug(string text);
 };
