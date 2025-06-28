@@ -1,9 +1,4 @@
-#include "logger.h"
-
-// Logger* Logger::getInstance() {
-//     static Logger s;
-//     return &s;
-// }
+#include "main/logger.h"
 
 void Logger::info(string text)
 {
