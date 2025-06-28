@@ -1,6 +1,6 @@
 #include "logger.h"
 
-void Logger::setPrintFunc(function<void(string)>) {
+void Logger::setPrintFunc(function<void(string)> print) {
     this->print = print;
 }
 

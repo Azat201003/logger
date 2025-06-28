@@ -8,29 +8,28 @@
 
 using namespace std;
 
-enum ClassMessages {
-CREATED,
-};
-
-enum SystemMessages {
-    START,
-    STOP,
-};
-
-template <typename x>
-string className() { return typeid(x).name(); }
-
-static map<ClassMessages, string> CLASS_MESSAGES {
-    {ClassMessages::CREATED, "created"},
-};
-
-static map<SystemMessages, string> SYSTEM_MESSAGES {
-    {SystemMessages::START, "----------STARTED----------\n\n"},
-    {SystemMessages::STOP, "----------STOPPED----------\n\n"},
-};
-
 class Logger {
 private:
+    enum ClassMessages {
+        CREATED,
+    };
+
+    enum SystemMessages {
+        START,
+        STOP,
+    };
+
+    template <typename x>
+    string className() { return typeid(x).name(); }
+
+    const map<ClassMessages, string> CLASS_MESSAGES {
+        {ClassMessages::CREATED, "created"},
+    };
+
+    const map<SystemMessages, string> SYSTEM_MESSAGES {
+        {SystemMessages::START, "----------STARTED----------\n\n"},
+        {SystemMessages::STOP, "----------STOPPED----------\n\n"},
+    };
     function<void(string)> print = &coutPrint;
     static void coutPrint(string text) {
         cout << text;
