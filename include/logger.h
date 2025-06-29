@@ -19,7 +19,8 @@ public:
         STOP,
     };
 private:
-    string timeFormat;
+    ofstream log;
+    string timeFormat = "";
     function<void(string)> customPrint = &coutPrint;
     static void coutPrint(string text) {
         cout << text;
@@ -40,7 +41,7 @@ public:
     void print(string name, string text);
     void setPrintFunc(function<void(string)>);
     void setTimeFormat(string format);
-    void setOutputFile(string filepath);
+    void setOutputFileAsPrint(string filepath);
     void info(string text);
     template <typename T>
     void named(string text) {
@@ -53,4 +54,5 @@ public:
     void system(SystemMessages message);
     void system(string text);
     void debug(string text);
+    void error(string text);
 };

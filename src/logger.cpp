@@ -1,17 +1,37 @@
 #include "logger.h"
 
+#include <iostream>
+#include <ctime>
+#include <iomanip>
+
 void Logger::print(string name, string text) {
-    customPrint("[" + name + "] " + text + "\n");
+    std::time_t currentTime = std::time(nullptr);
+    std::tm* localTime = std::localtime(&currentTime);
+    
+    char buffer[80];
+    strftime(
+        buffer, sizeof(buffer),
+        timeFormat.data(),
+        localTime
+    );
+
+    customPrint(string(buffer) + "[" + name + "] " + text + "\n");
+
 }
 
 void Logger::setPrintFunc(function<void(string)> print) {
     this->customPrint = print;
 }
 
-void Logger::setOutputFile(string filepath) {
-    ofstream* log = static_cast<ofstream*>(calloc(sizeof(ofstream), 1)); // ! рискованно, занимает файл но не освобождает его .close()
-    this->customPrint = [log] (string text) {
-        (*log) << text;
+void Logger::setTimeFormat(string format) {
+    this->timeFormat = format;
+}
+
+void Logger::setOutputFileAsPrint(string filepath) {
+    this->customPrint = [this, filepath] (string text) {
+        log.open(filepath);
+        log << text;
+        log.close();
     };
 }
 
@@ -25,6 +45,10 @@ void Logger::system(string text) {
 
 void Logger::debug(string text) {
     print("DEBUG", text);
+}
+
+void Logger::error(string text) {
+    print("ERROR", text);
 }
 
 void Logger::system(SystemMessages message) {
