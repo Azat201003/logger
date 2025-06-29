@@ -6,6 +6,7 @@ void basicTest(Logger* logger) {
     logger->debug("debug test");
     logger->info("info test");
     logger->system("system test");
+    logger->named<Logger>("named tag");
     logger->system(Logger::STOP);
 }
 

@@ -44,7 +44,7 @@ public:
     void info(string text);
     template <typename T>
     void named(string text) {
-        print(className<T>(), text + "\n");
+        print(className<T>(), text);
     }
     template <typename T>
     void named(ClassMessages message) {
