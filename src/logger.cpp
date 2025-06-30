@@ -15,7 +15,7 @@ void Logger::print(string name, string text) {
         localTime
     );
 
-    customPrint(string(buffer) + "[" + name + "] " + text + "\n");
+    customPrint(permissions.updateText(name, string(buffer) + "[" + name + "] " + text + "\n"));
 
 }
 

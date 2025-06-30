@@ -22,10 +22,21 @@ void timeTest(Logger* logger) {
     logger->setTimeFormat("");
 }
 
+void permissionsTest(Logger* logger) {
+    logger->permissions.updatePermission("DEBUG", new NoTextPermission());
+    logger->info("No text permission test for DEBUG");
+
+    logger->debug("debug test");
+    logger->info("info test");
+    logger->system("system test");
+    logger->named<Logger>("named test");
+}
+
 int main() {
     Logger* logger = new Logger();
     logger->system(Logger::START);
     basicTest(logger);
+    permissionsTest(logger);
     timeTest(logger);
     logger->system(Logger::STOP);
     return 0;
