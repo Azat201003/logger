@@ -12,7 +12,7 @@ make install
 
 ## Tests
 
-You can see how to use libraries by reading tests/* and you can build and run it using cmake by typing follow command
+You can see how to use library by reading tests/* and you can build and run this tests using cmake by typing follow command
 
 ``` bash
 make test
