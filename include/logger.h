@@ -15,7 +15,7 @@ public:
 };
 
 class BasePermission : public Permission {
-    string updateText(string text) {
+    string updateText(string text) override {
         return text;
     }
 };
