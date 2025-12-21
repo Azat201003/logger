@@ -94,3 +94,9 @@ public:
     void debug(string text);
     void error(string text);
 };
+
+class UniqueLogger : public Logger {
+public:
+	static UniqueLogger& getInstance();
+};
+

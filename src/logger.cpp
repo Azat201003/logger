@@ -54,3 +54,9 @@ void Logger::error(string text) {
 void Logger::system(SystemMessages message) {
     system(SYSTEM_MESSAGES.at(message));
 }
+
+UniqueLogger& UniqueLogger::getInstance() {
+	static UniqueLogger instance;
+	return instance;
+}
+
