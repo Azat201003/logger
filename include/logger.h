@@ -56,7 +56,6 @@ public:
         STOP,
     };
 private:
-    ofstream log;
     string timeFormat = "";
     function<void(string)> customPrint = &coutPrint;
 
