@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10 FATAL_ERROR)
 
-# find_library(logger)
+find_library(logger logger)
 
 add_executable(logger_tests
     main.cpp

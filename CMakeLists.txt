@@ -12,7 +12,7 @@ target_include_directories(logger PUBLIC
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
-target_sources(logger PRIVATE src/logger.cpp)
+target_sources(logger PRIVATE src/logger/logger.cpp)
 
 # 3. Установка самой библиотеки
 install(TARGETS logger
@@ -23,7 +23,7 @@ install(TARGETS logger
 )
 
 # 4. Установка заголовочных файлов
-install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/logger
+install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
     FILES_MATCHING PATTERN "*"
 )
 
@@ -31,5 +31,5 @@ install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/logger
 install(EXPORT logger-targets
     FILE logger-config.cmake
     NAMESPACE logger::
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/logger
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake
 )
