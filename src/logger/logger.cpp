@@ -29,7 +29,7 @@ void Logger::setTimeFormat(string format) {
 void Logger::setOutputFileAsPrint(string filepath) {
 	this->customPrint = [this, filepath] (string text) {
 		ofstream log;
-		log.open(filepath);
+		log.open(filepath, std::ios::app);
 		log << text;
 		log.close();
 	};
