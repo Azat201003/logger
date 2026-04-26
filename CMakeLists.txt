@@ -31,5 +31,5 @@ install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 install(EXPORT logger-targets
     FILE logger-config.cmake
     NAMESPACE logger::
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/logger
 )
